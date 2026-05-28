@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { PATHS } from '../../routes/paths';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
-import { Badge } from '../../components/ui/badge';
 import { 
   Plus, 
   Search, 
@@ -165,7 +164,7 @@ export default function Dashboard() {
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-3 ml-auto mt-4 xl:mt-0">
+            <div className="flex flex-wrap items-center justify-end gap-3 w-full xl:w-auto mt-4 xl:mt-0">
               <Button 
                 className="bg-orange-500 hover:bg-orange-600 text-white rounded-md border-0"
                 onClick={() => updateUser({ ...user, isPrime: true })}

@@ -7,7 +7,7 @@ import { Badge } from '../../components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
 import { Button } from '../../components/ui/button';
 import { 
-  ArrowLeft, Edit, MapPin, Mail, Phone, Calendar, Crown, Activity,
+  ArrowLeft, Edit, Mail, Phone, Calendar, Crown, Activity,
   ShoppingBag, Stethoscope, CreditCard, User, ClipboardList, Users, 
   Droplet, Home, Trash2, Plus
 } from 'lucide-react';
@@ -183,7 +183,7 @@ export default function UserDetail() {
 
       {/* Tabs */}
       <Tabs defaultValue="overview" className="w-full mt-8">
-        <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start rounded-none h-12 p-0 gap-6">
+        <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start rounded-none h-12 p-0 gap-6 overflow-x-auto flex-nowrap whitespace-nowrap scrollbar-hide">
           <TabsTrigger 
             value="overview" 
             className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-[#0d4734] data-[state=active]:text-[#0d4734] rounded-none px-0 text-sm font-medium h-full text-gray-500"

@@ -32,6 +32,7 @@ export function EditUserModal({ user, open, onOpenChange }: EditUserModalProps) 
 
   useEffect(() => {
     if (user) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFormData({
         name: user.name,
         email: user.email,

@@ -2,20 +2,20 @@ import { Bell, Search, Menu, Moon, Sun } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { useThemeStore } from '../../store/themeStore';
+import { useUIStore } from '../../store/uiStore';
 
 export function Navbar() {
   const { theme, toggleTheme } = useThemeStore();
+  const { toggleSidebar } = useUIStore();
   return (
     <nav className="fixed top-0 z-50 w-full border-b bg-white dark:bg-gray-900 dark:border-gray-800 transition-colors">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start rtl:justify-end">
             <button
-              data-drawer-target="logo-sidebar"
-              data-drawer-toggle="logo-sidebar"
-              aria-controls="logo-sidebar"
               type="button"
               className="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
+              onClick={toggleSidebar}
             >
               <span className="sr-only">Open sidebar</span>
               <Menu className="h-6 w-6" />

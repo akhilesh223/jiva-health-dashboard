@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { PATHS } from '../../routes/paths';
-import { motion } from 'framer-motion';
+import { useUIStore } from '../../store/uiStore';
 import {
   LayoutDashboard,
   Users,
@@ -28,14 +28,24 @@ const navItems = [
 
 export function Sidebar() {
   const location = useLocation();
+  const { isSidebarOpen, setSidebarOpen } = useUIStore();
 
   return (
-    <motion.aside 
-      initial={{ x: -250 }}
-      animate={{ x: 0 }}
-      transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className="hidden w-64 flex-col border-r bg-white dark:bg-gray-900 dark:border-gray-800 transition-colors md:flex h-[calc(100vh-4rem)] sticky top-16"
-    >
+    <>
+      {/* Mobile Overlay */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 z-30 bg-gray-900/50 dark:bg-gray-900/80 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      <aside 
+        className={cn(
+          "fixed inset-y-0 left-0 z-40 w-64 flex flex-col border-r bg-white dark:bg-gray-900 dark:border-gray-800 transition-transform duration-300 ease-in-out md:relative md:flex md:h-[calc(100vh-4rem)] md:translate-x-0 md:sticky md:top-16 pt-16 md:pt-0",
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        )}
+      >
       <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-900 px-3 pb-4">
         <ul className="space-y-2 font-medium mt-4">
           {navItems.map((item) => {
@@ -46,6 +56,7 @@ export function Sidebar() {
               <li key={item.name}>
                 <Link
                   to={item.path}
+                  onClick={() => setSidebarOpen(false)}
                   className={cn(
                     "flex items-center rounded-lg p-2 text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 group transition-colors",
                     isActive ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" : ""
@@ -72,6 +83,7 @@ export function Sidebar() {
           </div>
         </div>
       </div>
-    </motion.aside>
+      </aside>
+    </>
   );
 }
